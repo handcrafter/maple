@@ -1,5 +1,3 @@
-using namespace std;
-
 template <class T>
 class Node
 {
@@ -8,6 +6,7 @@ private:
     T value;
 
 public:
+    Node();
     Node(int key, T value);
     void print();
     void setKey(int key);

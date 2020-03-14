@@ -1,34 +1,31 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.16)
 
-project(maple)
+# Project name and a few useful settings. Other commands can pick up the results
+project(maple
+    VERSION 0.1
+    DESCRIPTION "C++ implementations of various tree structures"
+    LANGUAGES CXX)
 
-# C++ 17
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  # using Clang
-  message("Clang")
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  # using GCC
-  message("GCC")
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-  # using Intel C++
-  message("Intel C++")
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  # using Visual Studio C++
-  message("Visual Studio C++")
+# Only do these if this is the main project, and not if it is included through add_subdirectory
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+    # Optionally set things like CMAKE_CXX_STANDARD, CMAKE_POSITION_INDEPENDENT_CODE here
+
+    # Let's ensure -std=c++xx instead of -std=g++xx
+    set(CMAKE_CXX_EXTENSIONS OFF)
+    
 endif()
 
-# include files
-include_directories(
-    include
-)
+# The compiled library code is here
+add_subdirectory(src)
 
-# target
-add_executable(
-    maple
-    src/node.cpp
-    src/main.cpp
-)
+# The executable code is here
+add_subdirectory(apps)
+
+# Testing only available if this is the main app
+# Emergency override MODERN_CMAKE_BUILD_TESTING provided as well
+if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME OR MODERN_CMAKE_BUILD_TESTING) AND BUILD_TESTING)
+    add_subdirectory(tests)
+endif()
