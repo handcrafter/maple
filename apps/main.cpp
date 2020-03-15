@@ -1,9 +1,7 @@
-#include <maple/node.hpp>
-
-#include <string>
+#include <maple/node.h>
 
 int main()  {
-   Node<std::string> node(3, "abc");
+   Node node(3, "abc");
    node.print();
    return 0;
 }

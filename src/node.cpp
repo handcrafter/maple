@@ -1,41 +1,32 @@
-#include <maple/node.hpp>
+#include <maple/node.h>
 
 #include <iostream>
-#include <string>
 
-template<class T>
-Node<T>::Node() {
+Node::Node() {
 }
 
-template<class T>
-Node<T>::Node(int key, T value) {
-    key = key;
-    value = value;
+Node::Node(int key, std::string value):
+    key{key},
+    value{value}  {
 }
 
-template<class T>
-void Node<T>::print() {
-	std::cout << key << " - " << value << std::endl;
+void Node::print() {
+    std::cout << "key" << " - " << key;
+    std::cout << ", value" << " - " << value << std::endl;
 }
 
-template<class T>
-void Node<T>::setKey(int key) {
+void Node::setKey(int key) {
     key = key;
 }
 
-template<class T>
-void Node<T>::setValue(T value) {
+void Node::setValue(std::string value) {
     value = value;
 }
 
-template<class T>
-int Node<T>::getKey() {
+int Node::getKey() {
     return key;
 }
 
-template<class T>
-T Node<T>::getValue() {
+std::string Node::getValue() {
     return value;
 }
-
-template Node<std::string>;

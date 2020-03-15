@@ -1,4 +1,4 @@
-set(HEADER_LIST "${maple_SOURCE_DIR}/include/maple/node.hpp")
+set(HEADER_LIST "${maple_SOURCE_DIR}/include/maple/node.h")
 
 # Make an automatic library - will be static or dynamic based on user setting
 add_library(node_lib STATIC node.cpp ${HEADER_LIST})
